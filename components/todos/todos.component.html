@@ -1,0 +1,3 @@
+<!--component html goes here -->
+<todo-form (created)="onTodoCreated($event)" ></todo-form>
+<todo-list [todos]="todos" (toggled)="onTodoToggled($event)" (deleted)="onTodoDeleted($event)" ></todo-list>    

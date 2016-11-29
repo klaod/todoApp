@@ -10,18 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var todo_item_component_1 = require('../todo-item/todo-item.component');
 var core_1 = require('@angular/core');
-var todo_service_1 = require('../shared/todo-service');
 var TodoListComponent = (function () {
-    function TodoListComponent(todoService) {
-        this.todoService = todoService;
-        this.todos = [];
+    function TodoListComponent() {
+        this.toggled = new core_1.EventEmitter();
+        this.deleted = new core_1.EventEmitter();
     }
-    TodoListComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.todoService.getTodos().then(function (todos) { return _this.todos = todos; });
+    TodoListComponent.prototype.onTodoToggled = function (todo) {
+        this.toggled.emit(todo);
     };
     TodoListComponent.prototype.onTodoDeleted = function (todo) {
-        this.todoService.deleteTodo(todo);
+        this.deleted.emit(todo);
     };
     Object.defineProperty(TodoListComponent.prototype, "sortedTodos", {
         get: function () {
@@ -46,6 +44,18 @@ var TodoListComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], TodoListComponent.prototype, "todos", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], TodoListComponent.prototype, "toggled", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], TodoListComponent.prototype, "deleted", void 0);
     TodoListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -54,7 +64,7 @@ var TodoListComponent = (function () {
             styleUrls: ['todo-list.component.css'],
             directives: [todo_item_component_1.TodoItemComponent],
         }), 
-        __metadata('design:paramtypes', [todo_service_1.TodoService])
+        __metadata('design:paramtypes', [])
     ], TodoListComponent);
     return TodoListComponent;
 }());

@@ -8,28 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+// Angular Imports
 var core_1 = require('@angular/core');
-var todo_data_1 = require('./todo-data');
-var TodoService = (function () {
-    function TodoService() {
+// This Module's Components
+var todos_component_1 = require('./todos.component');
+var TodosModule = (function () {
+    function TodosModule() {
     }
-    TodoService.prototype.getTodos = function () {
-        return new Promise(function (resolve) { return setTimeout(function () { return resolve(todo_data_1.todos); }, 1000); });
-    };
-    TodoService.prototype.addTodo = function (todo) {
-        todo_data_1.todos.push(todo);
-    };
-    TodoService.prototype.deleteTodo = function (todo) {
-        var index = todo_data_1.todos.indexOf(todo);
-        if (index != -1) {
-            todo_data_1.todos.splice(index, 1);
-        }
-    };
-    TodoService = __decorate([
-        core_1.Injectable(), 
+    TodosModule = __decorate([
+        core_1.NgModule({
+            imports: [],
+            declarations: [
+                todos_component_1.TodosComponent,
+            ],
+            exports: [
+                todos_component_1.TodosComponent,
+            ]
+        }), 
         __metadata('design:paramtypes', [])
-    ], TodoService);
-    return TodoService;
+    ], TodosModule);
+    return TodosModule;
 }());
-exports.TodoService = TodoService;
-//# sourceMappingURL=todo-service.js.map
+exports.TodosModule = TodosModule;
+//# sourceMappingURL=todos.module.js.map

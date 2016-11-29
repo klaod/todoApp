@@ -9,13 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var todo_model_1 = require('../shared/todo-model');
+var todo_model_1 = require('../../../shared/todo-model');
 var TodoItemComponent = (function () {
     function TodoItemComponent() {
+        this.toggled = new core_1.EventEmitter();
         this.deleted = new core_1.EventEmitter();
+        this.deleted = new core_1.EventEmitter();
+        this.toggled = new core_1.EventEmitter();
     }
-    TodoItemComponent.prototype.toggleDone = function () {
+    TodoItemComponent.prototype.toggle = function () {
         this.todo.done = !this.todo.done;
+        this.toggled.emit(this.todo);
     };
     TodoItemComponent.prototype.delete = function () {
         this.deleted.emit(this.todo);
@@ -24,6 +28,10 @@ var TodoItemComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', todo_model_1.Todo)
     ], TodoItemComponent.prototype, "todo", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TodoItemComponent.prototype, "toggled", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
